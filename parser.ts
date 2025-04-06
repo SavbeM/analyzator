@@ -111,8 +111,8 @@ export class Parser {
             this.consume(TokenType.LPAREN);
             result = this.expression();
             this.consume(TokenType.RPAREN);
-            this.pushLog(")");
             this.popLog();
+            this.pushLog(")");
             this.popLog();
         } else {
             throw new Error(`Syntax error: Unexpected token ${token}`);
