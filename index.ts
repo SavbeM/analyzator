@@ -2,6 +2,7 @@ import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 import readline from 'node:readline';
 
+
 export class Calculator {
 
   evaluate(expression: string): number | string {
@@ -23,8 +24,16 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-rl.question(`Insert your input`, expr => {
-  expr != "exit" ?
-  console.log(calc.evaluate(expr)) :
-  rl.close();
-});
+
+const askQuestion = () => {
+  rl.question(`Insert your input: `, expr => {
+    if (expr !== "exit") {
+      console.log(calc.evaluate(expr));
+      askQuestion();
+    } else {
+      rl.close();
+    }
+  });
+};
+
+askQuestion();
