@@ -54,7 +54,7 @@ export class Lexer {
 
     private number(): Token {
         let result = 0;
-
+        // hornerova metoda
         while (this.current_char !== null && /\d/.test(this.current_char)) {
             result = result * 10 + parseInt(this.current_char);
             this.advance();
